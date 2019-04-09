@@ -55,3 +55,6 @@ https://s3.amazonaws.com/unity-ml-agents/0.5/TFSharpPlugin.unitypackage
             graph.Dispose();
         }
 ```
+
+### Reference
+* Github: Syn-McJ/TFClassify-Unity. https://github.com/Syn-McJ/TFClassify-Unity
