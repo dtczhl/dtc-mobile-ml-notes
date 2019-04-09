@@ -1,37 +1,18 @@
+Creating Visual Studio 2017 environments for point cloud development
+
+Packages
+* PCL 1.9.1 (All in One)
+* Qt 
+
 ### Configuration
 
 1. download PCL AllInOne
 
     https://github.com/PointCloudLibrary/pcl/releases
 
-1. create **DLL** **empty** project using Visual Studio. 
+1. download Qt
 
-    C++ source template
-    ```
-    #include "TestDLLSort.h"
-    #include <algorithm>
-
-    extern "C" {
-	    void TestSort(int a[], int length) {
-		    std::sort(a, a+length);
-	    }
-    }
-    ```
-
-    C++ header template
-    ```
-    #pragma once
-
-    #define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING
-
-    #define TESTDLLSORT_API __declspec(dllexport) 
-
-    extern "C" {
-	    TESTDLLSORT_API void TestSort(int a[], int length);
-    }
-    ```
-
-1. disable warnings. `Project -> Properties -> C/C++ -> Preprocessor -> Preprocessor Definitions` adds `_CRT_SECURE_NO_WARNINGS`
+    https://www.qt.io/download
 
 1. `Project -> Propertites`: All Configurations, All Platforms. `C/C++ general -> Additional Include Directoreis' 
 
@@ -44,6 +25,7 @@
     D:\Software\PCL 1.9.1\3rdParty
     D:\Software\PCL 1.9.1\include\pcl-1.9
     C:\Program Files\OpenNI2\Include
+    D:\Qt\5.12.2\msvc2017_64\include
     ```
 
 1. `Linker -> General -> Additional Library Directories`
@@ -58,6 +40,25 @@
     ```
 
 1. `Linker -> Input -> Additional Dependencies` (add libraries here, to be done...........)
+
+
+Some Errors
+
+1. disable warnings. `Project -> Properties -> C/C++ -> Preprocessor -> Preprocessor Definitions` adds `_CRT_SECURE_NO_WARNINGS`
+
+1. `the argument to a feature-test macro must be a simple identifer`
+
+    ```
+    #if defined(__has_cpp_attribute) changed to
+    #if defined(__clang__) && defined(__has_cpp_attribute)
+    ```
+    See https://stackoverflow.com/questions/52636944/using-boostthread-with-cmake-in-ms-visual-studio-2017-results-in-two-compiler
+
+1. `seekpos()` error. Add the following to the header
+
+    ```
+    #define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING
+    ``` 
 
 ### Reference
 * How to integrate Point Cloud Library With Unity Google tango project?. https://stackoverflow.com/questions/46299351/how-to-integrate-point-cloud-library-with-unity-google-tango-project   
