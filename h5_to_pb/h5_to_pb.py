@@ -4,6 +4,7 @@ import tensorflow as tf
 import argparse
 import os
 
+
 def freeze_session(session, keep_var_names=None, output_names=None, clear_devices=True):
     """
     Freezes the state of a session into a pruned computation graph.
