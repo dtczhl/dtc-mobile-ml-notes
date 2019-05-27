@@ -25,9 +25,13 @@ def freeze_session(session, keep_var_names=None, output_names=None, clear_device
     graph = session.graph
     with graph.as_default():
         freeze_var_names = list(set(v.op.name for v in tf.global_variables()).difference(keep_var_names or []))
-        output_names = output_names or []
-        output_names += [v.op.name for v in tf.global_variables()]
+        # output_names = output_names or []
+        # output_names += [v.op.name for v in tf.global_variables()]
         # Graph -> GraphDef ProtoBuf
+        if output_names is None:
+            output_names = []
+            output_names += [v.op.name for v in tf.global_variables()]
+
         input_graph_def = graph.as_graph_def()
         if clear_devices:
             for node in input_graph_def.node:
@@ -47,8 +51,7 @@ K.set_learning_phase(0)
 
 model = load_model(args.input_file_h5)
 
-frozen_graph = freeze_session(K.get_session(),
-                              output_names=[out.op.name for out in model.outputs])
+frozen_graph = freeze_session(K.get_session(), output_names=[out.op.name for out in model.outputs])
 
 print(model.summary())
 
