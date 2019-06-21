@@ -28,7 +28,7 @@
 `DtcTensorflowMobileHelper` is a wrapper class which includes some useful functions
 
 A complete example with a ML model (input: an array of 100, output: a single value)
-  ```
+  ```java
     AssetManager assetManager = getResources().getAssets();
     TensorFlowInferenceInterface tfInterface = new TensorFlowInferenceInterface(assetManager, "imdb.pb");
 

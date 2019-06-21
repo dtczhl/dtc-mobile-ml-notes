@@ -12,7 +12,7 @@ print('Processing librarys under ' + args.dirname)
 
 onlyfiles = [f for f in os.listdir(args.dirname) if isfile(join(args.dirname, f))]
 
-onlyfiles.sort() 
+onlyfiles.sort()
 
 print()
 for f in onlyfiles:

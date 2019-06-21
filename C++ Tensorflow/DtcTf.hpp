@@ -30,6 +30,6 @@ public:
     bool runModel(void);
 
 public:
-    TfWrapper(const char* graphPath);
+    explicit TfWrapper(const char* graphPath);
     ~TfWrapper();
 };
