@@ -19,15 +19,15 @@ Build android programs and shared libraries
 1.  make a hello_world.cpp program
 
 2.  compile
-  ```
+    ```shell
     $CC -pie hello_world.cpp
-  ```
+    ```
 
 3.  push `a.out` to android phone, and run it
-  ```shell
+    ```shell
     adb push a.out /data/local/tmp/.
     adb shell "./data/local/tmp/a.out"
-  ```
+    ```
 
 ### Reference
-*  Cross Compiling C/C++ for Android. <http://nickdesaulniers.github.io/blog/2016/07/01/android-cli/>
+*    Cross Compiling C/C++ for Android. <http://nickdesaulniers.github.io/blog/2016/07/01/android-cli/>

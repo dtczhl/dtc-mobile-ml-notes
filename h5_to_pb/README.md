@@ -1,6 +1,6 @@
 Convert Keras .h5 to Tensorflow .pb
 
-```
+```python
   python3 h5_to_pb.py f.h5 f.pb
 ```
 

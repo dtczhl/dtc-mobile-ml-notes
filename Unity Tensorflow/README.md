@@ -1,16 +1,15 @@
 ## Running Tensorflow Models in Unity
 
-
 ### Configuration
 
 1.  install ML-Agents (windows)
 
-  <https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation-Windows.md>
+    <https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation-Windows.md>
 
 2.  download TFSharpPlugin.unitypackage
 
-  v0.5 version:
-  <https://s3.amazonaws.com/unity-ml-agents/0.5/TFSharpPlugin.unitypackage>
+    v0.5 version:
+    <https://s3.amazonaws.com/unity-ml-agents/0.5/TFSharpPlugin.unitypackage>
 
 3.  create Unity project, in `Player Settings -> Other Settings`, add `ENABLE_TENSORFLOW` to `Scripting Define Symbols`
 
@@ -23,7 +22,7 @@
 1.  create `Models` folder under `Assets`. put `.bytes` tensorflow model in it
 
 2.  code example
-  ```csharp
+    ```csharp
     public TextAsset graphModel;
 
     private float[,] inputTensor = new float[1, 100];
@@ -53,7 +52,7 @@
         session.Dispose();
         graph.Dispose();
     }
-  ```
+    ```
 
 ### Reference
-*  Github: Syn-McJ/TFClassify-Unity. <https://github.com/Syn-McJ/TFClassify-Unity>
+*    Github: Syn-McJ/TFClassify-Unity. <https://github.com/Syn-McJ/TFClassify-Unity>
