@@ -27,7 +27,7 @@ Tensorflow for C++
 4.  I also write a simple wrapper, see `DtcTf.hpp`, `DtcTf.cpp`
 
 5.  an example. `tfModelPath` is a `string` to the `.pb` file
-  ```
+   ```
     TfWrapper tfWrapper(tfModelPath.c_str());
     if (!tfWrapper.isGraphOK()) {
         std::cerr << "Error: load tensorflow graph fails" << std::endl;

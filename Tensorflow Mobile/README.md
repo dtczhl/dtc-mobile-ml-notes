@@ -16,7 +16,7 @@
     TensorFlowInferenceInterface tfInterface = new TensorFlowInferenceInterface(assetManager, "imdb.pb");
   ```
 
-4. feed data, run model, and fetch result
+4.  feed data, run model, and fetch result
   ```
     tfInterface.feed(inputName, inputData, dims)
     tfInterface.run(new String[]{outputName})

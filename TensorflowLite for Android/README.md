@@ -10,8 +10,8 @@ In Anaconda environment
   ```
 
 Other packages:
-*  Android SDK: 29.0.0
-*  Android NDK: r18b
+*    Android SDK: 29.0.0
+*    Android NDK: r18b
 
 ### Build libtensorflowLite.so
 
@@ -102,12 +102,12 @@ Other packages:
   ```
 
 5.  enable Android write and read permissions. Edit `manifests/AndroidManifest.xml`
-  ```
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  ```
-   Then in the `MainActivity.java`
-  ```java
+   ```xml
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+   ```
+    Then in the `MainActivity.java`
+    ```java
     private static final String[] PermissionStrings = {
       Manifest.permission.WRITE_EXTERNAL_STORAGE,
       Manifest.permission.READ_EXTERNAL_STORAGE
@@ -115,7 +115,7 @@ Other packages:
     ......
     ActivityCompat.requestPermissions(this, PermissionStrings, 1);
 
-  ```
+    ```
 
 ### Example TensorflowLite Program
 
@@ -141,4 +141,4 @@ Other packages:
 ```
 
 ### Reference
-*  Zimeng Lyu. Tensorflow Lite, Android NDK. <https://zimenglyu.com/en/ml/android/tensorflow/2018/11/27/tflite-android-ndk-eng.html>
+*   Zimeng Lyu. Tensorflow Lite, Android NDK. <https://zimenglyu.com/en/ml/android/tensorflow/2018/11/27/tflite-android-ndk-eng.html>

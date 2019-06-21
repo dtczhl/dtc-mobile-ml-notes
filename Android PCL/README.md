@@ -2,10 +2,10 @@
 ### Build PCL for android
 
 Package versisons:
-*  PCL  1.8.0
-*  EIGEN  3.2.9
-*  FLANN  1.8.4
-*  BOOST  1.61.0
+*   PCL  1.8.0
+*   EIGEN  3.2.9
+*   FLANN  1.8.4
+*   BOOST  1.61.0
 
 
 1.  install requirements

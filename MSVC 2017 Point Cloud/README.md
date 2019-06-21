@@ -8,11 +8,11 @@ Packages
 
 1.  download PCL AllInOne
 
-  <https://github.com/PointCloudLibrary/pcl/releases>
+    <https://github.com/PointCloudLibrary/pcl/releases>
 
 2.  download Qt
 
-  <https://www.qt.io/download>
+    <https://www.qt.io/download>
 
 3.  `Project -> Propertites`: All Configurations, All Platforms. `C/C++ general -> Additional Include Directoreis`
   ```
@@ -27,7 +27,7 @@ Packages
     D:\Qt\5.12.2\msvc2017_64\include
   ```
 
-4. `Linker -> General -> Additional Library Directories`
+4.  `Linker -> General -> Additional Library Directories`
   ```
     D:\Software\PCL 1.9.1\3rdParty\VTK\lib
     D:\Software\PCL 1.9.1\3rdParty\Qhull\lib
@@ -57,6 +57,6 @@ Packages
   ```
 
 ### Reference
-*  How to integrate Point Cloud Library With Unity Google tango project?. <https://stackoverflow.com/questions/46299351/how-to-integrate-point-cloud-library-with-unity-google-tango-project>   
-*  How to Write Native Plugins for Unity. <http://www.alanzucconi.com/2015/10/11/how-to-write-native-plugins-for-unity/>
-*  Setting up Point Cloud Library with Visual Studio. <https://stackoverflow.com/questions/16514762/setting-up-point-cloud-library-with-visual-studio/20837645#20837645>
+*    How to integrate Point Cloud Library With Unity Google tango project?. <https://stackoverflow.com/questions/46299351/how-to-integrate-point-cloud-library-with-unity-google-tango-project>   
+*    How to Write Native Plugins for Unity. <http://www.alanzucconi.com/2015/10/11/how-to-write-native-plugins-for-unity/>
+*    Setting up Point Cloud Library with Visual Studio. <https://stackoverflow.com/questions/16514762/setting-up-point-cloud-library-with-visual-studio/20837645#20837645>
