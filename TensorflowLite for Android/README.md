@@ -4,9 +4,9 @@ Build libtensorflowLite.so
 
 In Anaconda environment
   ```
-    conda install python=3.6
-    conda install bazel=0.20.0
-    git clone https://github.com/tensorflow/tensorflow.git -b r1.13
+    conda install python=3.7
+    conda install bazel=0.24.1
+    git clone https://github.com/tensorflow/tensorflow.git -b r1.14
   ```
 
 Other packages:
@@ -56,6 +56,34 @@ Other packages:
 
   ```
 
+### Build libtensorflowlite_gpu_gl.so
+If you want to run TensorflowLite on GPU, then this library needs to be compiled.
+
+1.  `vi tensorflow/tensorflow/lite/delegates/gpu/BUILD` and search for `libtensorflowlite_gpu_gl`, and add `-shared` and `-Wl,-soname=libtensorflowlite_gpu_gl.so` to it.
+  ```
+  cc_binary(
+    name = "libtensorflowlite_gpu_gl.so",
+    linkopts = select({
+      "//tensorflow:android": [
+      "-lEGL",
+      "-lGLESv3",
+      "-shared",
+      "-Wl,-soname=libtensorflowlite_gpu_gl.so"
+      ],
+      "//conditions:default": [],
+  }),
+  linkshared = 1,
+  linkstatic = 1,
+  tags = [
+    "nobuilder",
+    "notap",
+  ],
+  deps = [":gl_delegate"],
+  )
+  ```
+
+2.  run the following command and the built `libtensorflowlite_gpu_gl.so` is in `bazel-bin/tensorflow/lite/delegates/gpu/`
+
 ### Add Dependence
 
 1.  create folder `distribution` and will have the following structure
@@ -72,6 +100,8 @@ Other packages:
   ```
     git clone https://github.com/google/flatbuffers.git
   ```
+
+3.  to support GPU, copy `libtensorflowlite_gpu_gl.so` to the same directories as `libtensorflowLite.so`.
 
 ### Android Studio Configuration
 
@@ -116,29 +146,56 @@ Other packages:
     ActivityCompat.requestPermissions(this, PermissionStrings, 1);
 
     ```
+6.  to support GPU, add the `libtensorflowlite_gpu_gl.so` correspondingly as `libtensorflowLite.so`
 
-### Example TensorflowLite Program
+### Example TensorflowLite Programs
 
-```c++
-  tflite::StderrReporter error_reporter;
-  auto model = tflite::FlatBufferModel::BuildFromFile("/sdcard/MyData/your_model.tflite", &error_reporter);
+*   Run on CPU
+  ```c++
+    #include <tensorflow/lite/model.h>
+    #include <tensorflow/lite/interpreter.h>
+    #include <tensorflow/lite/kernels/register.h>
+    #include <android/log.h>
 
-  tflite::ops::builtin::BuiltinOpResolver resolver;
-  std::unique_ptr<tflite::Interpreter> interpreter;
-  tflite::InterpreterBuilder(*model, resolver)(&interpreter);
+    #define TAG "DTC"
+    #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,    TAG, __VA_ARGS__)
+    #define LOGW(...) __android_log_print(ANDROID_LOG_WARN,     TAG, __VA_ARGS__)
+    #define LOGI(...) __android_log_print(ANDROID_LOG_INFO,     TAG, __VA_ARGS__)
+    #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,    TAG, __VA_ARGS__)
 
-  interpreter->AllocateTensors();
+    ......
 
-  LOGD("TF Lite Inference Starts");
+    tflite::StderrReporter error_reporter;
+    auto model = tflite::FlatBufferModel::BuildFromFile("/sdcard/MyData/your_model.tflite", &error_reporter);
 
-  float *input = interpreter->typed_input_tensor<float>(0);
-  input[0] = 0;
+    tflite::ops::builtin::BuiltinOpResolver resolver;
+    std::unique_ptr<tflite::Interpreter> interpreter;
+    tflite::InterpreterBuilder(*model, resolver)(&interpreter);
 
-  interpreter->Invoke();
+    interpreter->AllocateTensors();
 
-  float *output = interpreter->typed_output_tensor<float>(0);
-  LOGD("TF Lite Inference Ends");
-```
+    LOGD("TF Lite Inference Starts");
+
+    float *input = interpreter->typed_input_tensor<float>(0);
+    input[0] = 0;
+
+    interpreter->Invoke();
+
+    float *output = interpreter->typed_output_tensor<float>(0);
+    LOGD("TF Lite Inference Ends");
+  ```
+
+*   Run on GPU. Compared to the CPU program
+  ```c++
+    ++ #include <tensorflow/lite/delegates/gpu/gl_delegate.h>
+    ++ using namespace tflite;
+    -- interpreter->AllocateTensors();
+    ++ auto* delegate = TfLiteGpuDelegateCreate(nullptr);
+    ++ interpreter->ModifyGraphWithDelegate(delegate);
+    // in the end
+    ++ TfLiteGpuDelegateDelete(delegate);
+  ```
 
 ### Reference
 *   Zimeng Lyu. Tensorflow Lite, Android NDK. <https://zimenglyu.com/en/ml/android/tensorflow/2018/11/27/tflite-android-ndk-eng.html>
+*   TensorFlow Lite on GPU. <https://www.tensorflow.org/lite/performance/gpu_advanced>
