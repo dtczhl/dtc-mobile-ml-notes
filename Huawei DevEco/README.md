@@ -2,8 +2,9 @@
 
 ### Install
 
+1.
 ```
 	Android studio -> File -> Settings -> Plugins -> Browse Repositories
 ```
 
-Search for the **DevEco IDE**
+2.	Search for the **DevEco IDE**

@@ -3,28 +3,27 @@
 
 ### Configuration
 
-1. install ML-Agents (windows)
-  
-    https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation-Windows.md
+1.  install ML-Agents (windows)
 
-1. download TFSharpPlugin.unitypackage
-    
-    v0.5 version:
-https://s3.amazonaws.com/unity-ml-agents/0.5/TFSharpPlugin.unitypackage
+  <https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation-Windows.md>
 
-1. create Unity project, in `Player Settings -> Other Settings`, add `ENABLE_TENSORFLOW` to `Scripting Define Symbols`
+2.  download TFSharpPlugin.unitypackage
 
-1. run TFSharpPlugin.unitypackage and import all
+  v0.5 version:
+<https://s3.amazonaws.com/unity-ml-agents/0.5/TFSharpPlugin.unitypackage>
 
-1. rename `.pb` to '.bytes'
+2.  create Unity project, in `Player Settings -> Other Settings`, add `ENABLE_TENSORFLOW` to `Scripting Define Symbols`
+
+4.  run TFSharpPlugin.unitypackage and import all
+
+5.  rename `.pb` to '.bytes'
 
 ### Example
 
-1. create `Models` folder under `Assets`. put `.bytes` tensorflow model in it
+1.  create `Models` folder under `Assets`. put `.bytes` tensorflow model in it
 
-2. code example
-
-```
+2.  code example
+  ```
     public TextAsset graphModel;
 
     private float[,] inputTensor = new float[1, 100];
@@ -33,7 +32,7 @@ https://s3.amazonaws.com/unity-ml-agents/0.5/TFSharpPlugin.unitypackage
         for (int i = 0; i < inputTensor.Length; i++) {
             inputTensor[0, i] = 2f;
         }
-        
+
         using (var graph = new TFGraph())
         {
             graph.Import(graphModel.bytes);
@@ -54,7 +53,7 @@ https://s3.amazonaws.com/unity-ml-agents/0.5/TFSharpPlugin.unitypackage
             session.Dispose();
             graph.Dispose();
         }
-```
+  ```
 
 ### Reference
-* Github: Syn-McJ/TFClassify-Unity. https://github.com/Syn-McJ/TFClassify-Unity
+* Github: Syn-McJ/TFClassify-Unity. <https://github.com/Syn-McJ/TFClassify-Unity>

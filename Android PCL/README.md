@@ -2,23 +2,24 @@
 ### Build PCL for android
 
 Package versisons:
-* PCL 1.8.0
-* EIGEN 3.2.9
-* FLANN 1.8.4
-* BOOST 1.61.0
+*  PCL 1.8.0
+*  EIGEN 3.2.9
+*  FLANN 1.8.4
+*  BOOST 1.61.0
 
-1. install requirements
+
+1.  install requirements
     ```
         apt-get install git make cmake
     ```
 
-1. download, unzip and export android ndk 14b
+2.  download, unzip and export android ndk 14b
     ```
         wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip
         export ANDROID_NDK=PATH_TO_YOUR_LOCAL_ANDROID_NDK_FOLDER
     ```
 
-1. clone my forked repo, download packages and build
+3. clone my forked repo, download packages and build
     ```
         git clone https://github.com/dtczhl/pcl-for-android.git .
         ./download-setup.sh
@@ -27,14 +28,14 @@ Package versisons:
 
 ### Android Studio config
 
-1. config `build.gradle` to use `armeabi-v7a` only
+1.  config `build.gradle` to use `armeabi-v7a` only
     ```
         ndk {
             abiFilters 'armeabi-v7a'
         }
     ```
 
-1. edit `local.properties` to use an old NDK that supports GCC (e.g., r17c). Edit `build.gradle` to use GCC
+2.  edit `local.properties` to use an old NDK that supports GCC (e.g., r17c). Edit `build.gradle` to use GCC
     ```
         cmake {
             // cppFlags ""
@@ -43,35 +44,32 @@ Package versisons:
         }
     ```
 
-1. create `pcl` folder with `include` and `lib` subfolder, and copy compiled header folders `boost`, `flann` and `pcl` to `include`, and copy all `.a` files to `lib`. Move `pcl` folder to `src/main/cpp`
+3.  create `pcl` folder with `include` and `lib` subfolder, and copy compiled header folders `boost`, `flann` and `pcl` to `include`, and copy all `.a` files to `lib`. Move `pcl` folder to `src/main/cpp`
 
-1. under `src/main` folder, create `jniLibs/armeabi-v7a` folder and copy all `.so` files
+4.  under `src/main` folder, create `jniLibs/armeabi-v7a` folder and copy all `.so` files
 
-1. download `Eigen` library and rename to `Eigen` and put it in `src/main/cpp`
+5.  download `Eigen` library and rename to `Eigen` and put it in `src/main/cpp`
 
-1. edit `CMakeLists.txt`. A template is given (as well as a script to generate library info)
+6.  edit `CMakeLists.txt`. A template is given (as well as a script to generate library info)
 
 ### Test
 
-A simple codelet to test whether PCL is correctly configured. 
-
+A simple codelet to test whether PCL is correctly configured.
 ```
-#include <pcl/point_types.h>
-#include <pcl/point_cloud.h>
-#include <pcl/io/pcd_io.h>
+  #include <pcl/point_types.h>
+  #include <pcl/point_cloud.h>
+  #include <pcl/io/pcd_io.h>
 
-......
-pcl::PointCloud<pcl::PointXYZ> cloud;
-cloud.width = 2048;
-cloud.height = 1;
-cloud.is_dense = true;
+  ......
+  pcl::PointCloud<pcl::PointXYZ> cloud;
+  cloud.width = 2048;
+  cloud.height = 1;
+  cloud.is_dense = true;
 
-for (int i = 0; i < cloud.width; i++) {
-    cloud.push_back(pcl::PointXYZ(i, i, i));
-}
+  for (int i = 0; i < cloud.width; i++) {
+      cloud.push_back(pcl::PointXYZ(i, i, i));
+  }
 ```
-
-
 
 ### Reference
-https://blog.csdn.net/hehehetanchaow/article/details/81033791
+<https://blog.csdn.net/hehehetanchaow/article/details/81033791>

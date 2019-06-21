@@ -15,7 +15,7 @@ Other packages:
 
 ### Build libtensorflowLite.so
 
-1. `vi WORKSAPCE` under `tensorflow` folder. Add the following to the end
+1.  `vi WORKSAPCE` under `tensorflow` folder. Add the following to the end
   ```
     android_sdk_repository(
       name = "androidsdk",
@@ -31,9 +31,9 @@ Other packages:
     )
   ```
 
-2. run `./configure` and select defaults.
+2.  run `./configure` and select defaults.
 
-3. `vi tensorflow/lite/BUILD`, and add the following to the end
+3.  `vi tensorflow/lite/BUILD`, and add the following to the end
   ```
     cc_binary(
       name = "libtensorflowLite.so",
@@ -50,7 +50,7 @@ Other packages:
     )
   ```
 
-4. run the following command and the built `libtensorflowLite.so` is in `bazel-bin/tensorflow/lite`
+4.  run the following command and the built `libtensorflowLite.so` is in `bazel-bin/tensorflow/lite`
   ```
     bazel build //tensorflow/lite:libtensorflowLite.so --crosstool_top=//external:android/crosstool --cpu=arm64-v8a --host_crosstool_top=@bazel_tools//tools/cpp:toolchain --cxxopt="-std=c++11"
 
@@ -58,7 +58,7 @@ Other packages:
 
 ### Add Dependence
 
-1. create folder `distribution` and will have the following structure
+1.  create folder `distribution` and will have the following structure
   ```
     distribution
       - lib
@@ -68,16 +68,16 @@ Other packages:
         -- tensorflow
   ```
 
-2. copy `libtensorflowLite.so` to `distribution/lib/arm64-v8a`. Download flatbuffers and copy the headers to `distribution/include`. Copy `tensorflow/tensorflow` to `distribution/include`
+2.  copy `libtensorflowLite.so` to `distribution/lib/arm64-v8a`. Download flatbuffers and copy the headers to `distribution/include`. Copy `tensorflow/tensorflow` to `distribution/include`
   ```
     git clone https://github.com/google/flatbuffers.git
   ```
 
 ### Android Studio Configuration
 
-1. create C++ project
+1.  create C++ project
 
-2. add headers and the library to CMakelists.txt. Only need to change the distribution_DIR. Here I move `distribution` folder to `app/src/main/cpp/`
+2.  add headers and the library to CMakelists.txt. Only need to change the distribution_DIR. Here I move `distribution` folder to `app/src/main/cpp/`
   ```
     set(distribution_DIR ${CMAKE_SOURCE_DIR}/distribution)
 
@@ -94,14 +94,14 @@ Other packages:
     ${log-lib})
   ```
 
-3. create `jniLibs` under `app/src/main` and copy `arm64-v8a` folder.
+3.  create `jniLibs` under `app/src/main` and copy `arm64-v8a` folder.
 
-4. `adb push` your `.tflite` to phone
+4.  `adb push` your `.tflite` to phone
   ```
     adb push your_model.tflite /sdcard/MyData/
   ```
 
-5. enable Android write and read permissions. Edit `manifests/AndroidManifest.xml`
+5.  enable Android write and read permissions. Edit `manifests/AndroidManifest.xml`
   ```
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -139,9 +139,6 @@ Other packages:
   float *output = interpreter->typed_output_tensor<float>(0);
   LOGD("TF Lite Inference Ends");
 ```
-
-
-
 
 ### Reference
 * Zimeng Lyu. Tensorflow Lite, Android NDK. https://zimenglyu.com/en/ml/android/tensorflow/2018/11/27/tflite-android-ndk-eng.html
