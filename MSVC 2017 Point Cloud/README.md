@@ -8,13 +8,13 @@ Packages
 
 1.  download PCL AllInOne
 
-  https://github.com/PointCloudLibrary/pcl/releases
+  <https://github.com/PointCloudLibrary/pcl/releases>
 
 2.  download Qt
 
-  https://www.qt.io/download
+  <https://www.qt.io/download>
 
-3.  `Project -> Propertites`: All Configurations, All Platforms. `C/C++ general -> Additional Include Directoreis'
+3.  `Project -> Propertites`: All Configurations, All Platforms. `C/C++ general -> Additional Include Directoreis`
   ```
     D:\Software\PCL 1.9.1\3rdParty\VTK\include\vtk-8.1
     D:\Software\PCL 1.9.1\3rdParty\Qhull\include
@@ -39,7 +39,6 @@ Packages
 
 5.  `Linker -> Input -> Additional Dependencies` (add libraries here, to be done...........)
 
-
 ### Some Possible Errors
 
 1.  disable warnings. `Project -> Properties -> C/C++ -> Preprocessor -> Preprocessor Definitions` adds `_CRT_SECURE_NO_WARNINGS`
@@ -49,6 +48,7 @@ Packages
     #if defined(__has_cpp_attribute) changed to
     #if defined(__clang__) && defined(__has_cpp_attribute)
   ```
+
   See <https://stackoverflow.com/questions/52636944/using-boostthread-with-cmake-in-ms-visual-studio-2017-results-in-two-compiler>
 
 3.  `seekpos()` error. Add the following to the header
@@ -57,6 +57,6 @@ Packages
   ```
 
 ### Reference
-* How to integrate Point Cloud Library With Unity Google tango project?. <https://stackoverflow.com/questions/46299351/how-to-integrate-point-cloud-library-with-unity-google-tango-project>   
-* How to Write Native Plugins for Unity. <http://www.alanzucconi.com/2015/10/11/how-to-write-native-plugins-for-unity/>
-* Setting up Point Cloud Library with Visual Studio. <https://stackoverflow.com/questions/16514762/setting-up-point-cloud-library-with-visual-studio/20837645#20837645>
+*  How to integrate Point Cloud Library With Unity Google tango project?. <https://stackoverflow.com/questions/46299351/how-to-integrate-point-cloud-library-with-unity-google-tango-project>   
+*  How to Write Native Plugins for Unity. <http://www.alanzucconi.com/2015/10/11/how-to-write-native-plugins-for-unity/>
+*  Setting up Point Cloud Library with Visual Studio. <https://stackoverflow.com/questions/16514762/setting-up-point-cloud-library-with-visual-studio/20837645#20837645>

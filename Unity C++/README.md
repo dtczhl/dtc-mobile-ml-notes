@@ -5,7 +5,7 @@ To run C++ in Unity, create DLL plugins
 1.  create **DLL** **empty** project using Visual Studio.
 
     C++ source template
-    ```
+    ```c
       #include "TestDLLSort.h"
       #include <algorithm>
 
@@ -16,7 +16,7 @@ To run C++ in Unity, create DLL plugins
       }
     ```
     C++ header template
-    ```
+    ```c
       #pragma once
 
       #define TESTDLLSORT_API __declspec(dllexport)

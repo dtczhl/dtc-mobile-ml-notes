@@ -1,4 +1,3 @@
-
 ### Tensorflow Mobile Android App Config
 
 1.  `build.gradle (Module.app)`

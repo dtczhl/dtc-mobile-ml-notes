@@ -3,7 +3,7 @@ Tensorflow for C++
 ### Setup
 
 1.  install Tensorflow for C
-  <https://github.com/Neargye/tensorflow/releases>
+<https://github.com/Neargye/tensorflow/releases>
 
 2. a simple CMake template
   ```

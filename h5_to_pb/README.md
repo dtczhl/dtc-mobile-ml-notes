@@ -5,7 +5,7 @@ Convert Keras .h5 to Tensorflow .pb
 ```
 
 If use objects that are not recognized by Keras, do this change. For example, using tensorflow operations
-  ```
+  ```diff
     --- model = load_model(args.input_file_h5)
     +++ model = load_model(args.input_file_h5, custom_objects={'tf': tf})
   ```
