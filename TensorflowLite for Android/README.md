@@ -83,6 +83,10 @@ If you want to run TensorflowLite on GPU, then this library needs to be compiled
   ```
 
 2.  run the following command and the built `libtensorflowlite_gpu_gl.so` is in `bazel-bin/tensorflow/lite/delegates/gpu/`
+  ```
+  bazel build //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_gl.so --crosstool_top=//external:android/crosstool --cpu=arm64-v8a --host_crosstool_top=@bazel_tools//tools/cpp:toolchain --cxxopt="-std=c++11"
+
+  ```
 
 ### Add Dependence
 
